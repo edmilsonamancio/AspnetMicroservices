@@ -24,7 +24,7 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Product>), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             var products = await _repository.GetProducts();
@@ -32,13 +32,13 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet("{id:length(24)}", Name = "GetProduct")]
-        [ProducesResponseType((int) HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(Product), (int) HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await _repository.GetProduct(id);
 
-            if(product == null)
+            if (product == null)
             {
                 _logger.LogError($"Product with id: {id}, not found");
                 return NotFound();
@@ -70,7 +70,7 @@ namespace Catalog.API.Controllers
             return Ok(await _repository.UpdateProduct(product));
         }
 
-        [HttpDelete("id:legth(24)", Name = "DeleteProduct")]
+        [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteProductById(string id)
         {
