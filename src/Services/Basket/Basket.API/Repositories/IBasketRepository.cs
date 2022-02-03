@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Basket.API.Repositories
 {
-    interface IBasketRepository
+    public interface IBasketRepository
     {
         Task<ShoppingCart> GetBasket(string userName);
         Task<ShoppingCart> UpdateBasket(ShoppingCart basket);
