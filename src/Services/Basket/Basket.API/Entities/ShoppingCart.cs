@@ -14,7 +14,7 @@ namespace Basket.API.Entities
 
         public ShoppingCart(string userName)
         {
-            UserName = UserName;
+            UserName = userName;
         }
 
         public decimal TotalPrice 
