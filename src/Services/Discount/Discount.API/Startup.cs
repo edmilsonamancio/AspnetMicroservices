@@ -1,3 +1,4 @@
+using Discount.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,9 @@ namespace Discount.API
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection services) 
+        {
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c => {
@@ -34,7 +37,8 @@ namespace Discount.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) 
+        {
             if(env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
