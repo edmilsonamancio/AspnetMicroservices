@@ -39,7 +39,7 @@ namespace Basket.API.Controllers
             foreach (var item in basket.Items)
             {
                 var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-                item.Price = coupon.Amount;
+                item.Price -= coupon.Amount;
             }
 
             return Ok(await _repository.UpdateBasket(basket));
